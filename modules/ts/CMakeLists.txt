@@ -14,10 +14,12 @@ if(WINRT)
   add_env_definitions(OPENCV_PERF_VALIDATION_DIR)
 endif()
 
-ocv_warnings_disable(CMAKE_CXX_FLAGS -Wundef)
+if (HAVE_opencv_ts)
+  ocv_warnings_disable(CMAKE_CXX_FLAGS -Wundef)
 
-ocv_add_module(ts INTERNAL opencv_core opencv_imgproc opencv_imgcodecs opencv_videoio opencv_highgui)
+  ocv_add_module(ts INTERNAL opencv_core opencv_imgproc opencv_imgcodecs opencv_videoio opencv_highgui)
 
-ocv_glob_module_sources()
-ocv_module_include_directories()
-ocv_create_module()
+  ocv_glob_module_sources()
+  ocv_module_include_directories()
+  ocv_create_module()
+endif()
